@@ -54,7 +54,7 @@ async def segui_linea():
                 print("controllo")
                 time.sleep(0.5)
                 controllo(1)
-                await asyncio.time(0.1)
+                await asyncio.sleep(0.1)
 async def main():
      await segui_linea()
 

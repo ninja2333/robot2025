@@ -20,7 +20,7 @@ async def start_cam():
     picam2.preview_configuration.controls.FrameRate = 32
     picam2.configure("preview")
     picam2.start()
-    await asyncio.time(3)
+    await asyncio.sleep(3)
     
     print("parto")
 
@@ -41,7 +41,7 @@ async def start_cam():
             break
         
         yield mask
-        await asyncio.time(0.1)
+        await asyncio.sleep(0.1)
 
     picam2.close()
     cv2.destroyAllWindows()
