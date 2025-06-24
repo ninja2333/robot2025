@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
 import time
-from picamera2 import Picamera
+from picamera2 import Picamera2
 import asyncio
 
 
