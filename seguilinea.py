@@ -47,9 +47,9 @@ async def segui_linea():
                     await asyncio.sleep(0.5)
                     print("mi muovo")
                     antdx.throttle = -1.0
-                    postdx.throttle = -1.0
+                    postdx.throttle = 1.0
                     antsx.throttle = -1.0
-                    postsx.throttle = -1.0
+                    postsx.throttle = 1.0
                 else:
                     print("controllo")
                     time.sleep(0.5)
