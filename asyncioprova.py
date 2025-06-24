@@ -56,9 +56,10 @@ async def segui_linea():
             controllo(1)
 
 async def main():
-    task1 = asyncio.create_task(rilevamento())
+    task1 = asyncio.create_task(rilevamento(start_cam()))
     task2 = asyncio.create_task(start_cam())
+    task3 = asyncio.create_task(segui_linea())
 
-    await asyncio.gather(task1, task2)  # Aspetta entrambe, per sempre
+    await asyncio.gather(task1, task2, task3)  # Aspetta entrambe, per sempre
 
 asyncio.run(main())
