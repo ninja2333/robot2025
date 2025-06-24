@@ -39,27 +39,23 @@ def controllo(tempo):
     turnsx(tempo)
 
 async def segui_linea():
-    while True:
-        if rilevamento(start_cam) == 1:
-            start_ruote()
-            time.sleep(0.5)
-            print("mi muovo")
-            antdx.throttle = 1.0
-            postdx.throttle = 1.0
-            antsx.throttle = 1.0
-            postsx.throttle = 1.0    
-        else :
+    async for mask in start_cam():
+        start_ruote()
+        while True:
+            if rilevamento(mask) == 1:
+                time.sleep(0.5)
+                print("mi muovo")
+                antdx.throttle = 1.0
+                postdx.throttle = 1.0
+                antsx.throttle = 1.0
+                postsx.throttle = 1.0    
+            else :
     #controlla
-            print("controllo")
-            start_ruote()
-            time.sleep(0.5)
-            controllo(1)
-
+                print("controllo")
+                time.sleep(0.5)
+                controllo(1)
+                await asyncio.time(0.1)
 async def main():
-    task1 = asyncio.create_task(rilevamento(start_cam()))
-    task2 = asyncio.create_task(start_cam())
-    task3 = asyncio.create_task(segui_linea())
-
-    await asyncio.gather(task1, task2, task3)  # Aspetta entrambe, per sempre
+     await segui_linea()
 
 asyncio.run(main())

@@ -20,7 +20,7 @@ async def start_cam():
     picam2.preview_configuration.controls.FrameRate = 32
     picam2.configure("preview")
     picam2.start()
-    time.sleep(3.0)
+    await asyncio.time(3)
     
     print("parto")
 
@@ -36,15 +36,18 @@ async def start_cam():
         
         cv2.imshow("Rilevamento Nero", risultato)
         area_nera2 = cv2.countNonZero(mask)
-
-        if rilevamento(mask) == 1 :
-            print("Area nera rilevata!")
-            print(area_nera2)
-            area_nera2 = cv2.countNonZero(mask)
             
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
         
         yield mask
+        await asyncio.time(0.1)
+
     picam2.close()
     cv2.destroyAllWindows()
+
+
+'''if rilevamento(mask) == 1 :
+            print("Area nera rilevata!")
+            print(area_nera2)
+            area_nera2 = cv2.countNonZero(mask)'''
