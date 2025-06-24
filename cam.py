@@ -6,7 +6,7 @@ import asyncio
 
 
 async def rilevamento(mask):
-    soglia = 200
+    soglia = 400
     area_nera = cv2.countNonZero(mask)
     if area_nera > soglia:
         return 1
@@ -44,14 +44,7 @@ async def start_cam():
             
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
-    
+        
+        yield mask
     picam2.close()
     cv2.destroyAllWindows()
-
-    return mask
-
-
-
-   
-
-
