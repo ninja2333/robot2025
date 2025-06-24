@@ -43,8 +43,8 @@ async def segui_linea():
         start_ruote()
         while True:
             async for mask in start_cam():
-                if rilevamento(mask) == 1:
-                    time.sleep(0.5)
+                if await rilevamento(mask) == 1:
+                    await asyncio.sleep(0.5)
                     print("mi muovo")
                     antdx.throttle = 1.0
                     postdx.throttle = 1.0
